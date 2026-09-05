@@ -32,11 +32,11 @@ jobs:
     - name: Create Briefcase Project & Build APK
       run: |
         briefcase new --no-input \
-          formal_name="Energy Tracker" \
-          app_name="energytracker" \
-          bundle="com.example" \
-          description="Energy Tracker App" \
-          author="Developer"
+          -Q formal_name="Energy Tracker" \
+          -Q app_name="energytracker" \
+          -Q bundle="com.example" \
+          -Q description="Energy Tracker App" \
+          -Q author="Developer"
         
         cp main.py energytracker/src/energytracker/app.py
         
