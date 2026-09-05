@@ -17,7 +17,7 @@ def main(page: ft.Page):
         {"name": "Monster Energy", "volume": "0.5 л", "caffeine": "160 мг", "color": "#2A085C"},
     ]
 
-    status_icon = ft.Icon(name=ft.Icons.CHECK_CIRCLE_ROUNDED, color="#A855F7", size=32)
+    status_icon = ft.Icon(ft.Icons.CHECK_CIRCLE_ROUNDED, color="#A855F7", size=32)
     status_text = ft.Text("Готов к зарядке!", size=18, weight=ft.FontWeight.BOLD, color="#A855F7")
     timer_text = ft.Text("24:00:00", size=42, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE)
     
