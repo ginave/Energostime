@@ -27,19 +27,39 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install briefcase
+        pip install briefcase toga-android
 
-    - name: Create Briefcase Project & Build APK
+    - name: Prepare Project Structure
       run: |
-        briefcase new --no-input \
-          -Q formal_name="Energy Tracker" \
-          -Q app_name="energytracker" \
-          -Q bundle="com.example" \
-          -Q description="Energy Tracker App" \
-          -Q author="Developer"
-        
+        mkdir -p energytracker/src/energytracker
         cp main.py energytracker/src/energytracker/app.py
         
+        cat << 'EOF' > energytracker/pyproject.toml
+        [build-system]
+        requires = ["briefcase"]
+
+        [tool.briefcase]
+        project_name = "Energy Tracker"
+        bundle = "com.example"
+        version = "0.0.1"
+        url = "https://example.com/energytracker"
+        license = "BSD-3-Clause"
+        author = "Developer"
+        author_email = "developer@example.com"
+
+        [tool.briefcase.app.energytracker]
+        formal_name = "Energy Tracker"
+        description = "Energy Tracker App"
+        icon = "src/energytracker/resources/energytracker"
+        sources = ["src/energytracker"]
+        requires = []
+
+        [tool.briefcase.app.energytracker.android]
+        build_style = "app"
+        EOF
+
+    - name: Build Android APK
+      run: |
         cd energytracker
         briefcase create android
         briefcase build android
